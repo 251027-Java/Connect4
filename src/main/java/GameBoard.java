@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class GameBoard {
 
@@ -12,4 +13,8 @@ public class GameBoard {
         }
     }
 
+    public static void playGame() {
+        System.out.println("Choose X or O to play.");
+        Scanner inputReader = new Scanner(System.in);
+    }
 }
