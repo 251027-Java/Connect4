@@ -4,9 +4,11 @@ import java.util.Scanner;
 public class GameBoard {
     static char[][] gameBoard = new char[6][7];
     static int columnNumber;
-    static char playerType;
+    static boolean player1 = true;
+    static boolean validInput = true;
 
     public static void initializeGameBoard() {
+        System.out.println("Player 1 is X and Player 2 is O");
         for (int i = 0; i < 6; i++) {
             Arrays.fill(gameBoard[i], '_');
         }
@@ -19,23 +21,36 @@ public class GameBoard {
     }
 
     public static void playGame() {
-        Scanner inputReader = new Scanner(System.in);
-        System.out.print("Choose X or O to play: ");
-        playerType = inputReader.next().toUpperCase().charAt(0);
+        if(Connect4.getGameTurns()%2!=0){
+            player1 = true;
+            System.out.print("Player 1 (X): ");
+        }
+        else {
+            player1 = false;
+            System.out.print("Player 2 (O): ");
+        }
 
         System.out.print("Choose a column to insert (1–7): ");
-        columnNumber = inputReader.nextInt();
-
-        while (columnNumber < 1 || columnNumber > 7) {
-            System.out.print("Invalid column. Choose between 1–7: ");
+        Scanner inputReader = new Scanner(System.in);
+        try {
+            columnNumber = inputReader.nextInt();
+            while (columnNumber < 1 || columnNumber > 7) {
+                System.out.print("Invalid column. Choose between 1–7: ");
+                columnNumber = inputReader.nextInt();
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid input. Choose a column between 1–7: ");
+            inputReader.next();
             columnNumber = inputReader.nextInt();
         }
+
     }
 
     public static boolean lowestRowToInsert() {
         for (int i = 5; i >= 0; i--) {
             if (gameBoard[i][columnNumber - 1] == '_') {
-                gameBoard[i][columnNumber - 1] = playerType;
+                if(player1) gameBoard[i][columnNumber - 1] = 'X';
+                else gameBoard[i][columnNumber - 1] = 'O';
                 printGameBoard();
                 return true;
             }
