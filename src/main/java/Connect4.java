@@ -7,10 +7,12 @@ public class Connect4 {
         GameBoard.initializeGameBoard();
         GameBoard.printGameBoard();
 
-        while(gameTurns>=0){
+        while(gameTurns>=0 && !GameBoard.checkForWin()){
             GameBoard.playGame();
             GameBoard.lowestRowToInsert();
+            if(gameTurns<=39) GameBoard.checkForWin();
             gameTurns--;
+
         }
 
     }
