@@ -10,6 +10,9 @@ public class GameBoard {
     static String[] columns = new String[7];
     static ArrayList<Integer> availableColumns = new ArrayList<Integer>(7);
 
+    public static boolean EmptyAvailableColumns(){
+        return availableColumns.isEmpty();
+    }
 
     public static void initializeGameBoard() {
         for(int i = 0; i < 7; i++){

@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.Math;
 
 public class Connect4 {
     static int gameTurns = 1;
@@ -7,20 +8,22 @@ public class Connect4 {
         return gameTurns;
     }
     public static void main(String [] args) {
-        // Game ends when the method in GameBoard.java to check for four is implemented or when 42 X's and O's total are inserted.
+        // Game ends when the method in GameBoard.java to check for four is implemented or when available
+        // colArray is empty
 
         GameBoard.initializeGameBoard();
         GameBoard.printGameBoard();
         boolean gameOver = false;
 
-        while(gameTurns<=42 && !gameOver){
+        while(!GameBoard.EmptyAvailableColumns() && !gameOver){
             GameBoard.playGame();
             GameBoard.lowestRowToInsert();
-            if(gameTurns>=7) {
+
+            if(Math.ceil((double) gameTurns / 2) >= 4) {
                 gameOver = GameBoard.checkForWin();
             }
             gameTurns++;
-            if(gameTurns==43){
+            if(gameOver || GameBoard.EmptyAvailableColumns()){
                 System.out.println("Game over.");
             }
         }
