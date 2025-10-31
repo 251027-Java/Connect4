@@ -20,7 +20,9 @@ public class Connect4 {
                 gameOver = GameBoard.checkForWin();
             }
             gameTurns++;
-
+            if(gameTurns==43){
+                System.out.println("Game over.");
+            }
         }
 
     }

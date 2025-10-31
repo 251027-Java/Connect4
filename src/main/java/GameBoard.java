@@ -1,17 +1,25 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class GameBoard {
     static char[][] gameBoard = new char[6][7];
     static int columnNumber;
     static boolean player1 = true;
-    static boolean validInput = true;
+    static String[] columns = new String[7];
+    static ArrayList<Integer> availableColumns = new ArrayList<Integer>(7);
+
 
     public static void initializeGameBoard() {
-        System.out.println("Player 1 is X and Player 2 is O");
+        for(int i = 0; i < 7; i++){
+            availableColumns.add(i+1);
+        }
+        System.out.println("Player 1 is X and Player 2 is O.");
         for (int i = 0; i < 6; i++) {
             Arrays.fill(gameBoard[i], '_');
         }
+        Arrays.fill(columns, "Empty");
     }
 
     public static void printGameBoard() {
@@ -23,40 +31,39 @@ public class GameBoard {
     public static void playGame() {
         if(Connect4.getGameTurns()%2!=0){
             player1 = true;
-            System.out.print("Player 1 (X): ");
+            System.out.print("Player X: ");
         }
         else {
             player1 = false;
-            System.out.print("Player 2 (O): ");
+            System.out.print("Player O: ");
         }
 
-        System.out.print("Choose a column to insert (1–7): ");
+        System.out.print("Choose a free column to insert (1–7):  ");
         Scanner inputReader = new Scanner(System.in);
         try {
             columnNumber = inputReader.nextInt();
-            while (columnNumber < 1 || columnNumber > 7) {
-                System.out.print("Invalid column. Choose between 1–7: ");
+            while (columnNumber < 1 || columnNumber > 7 || columns[columnNumber-1].equals("Full")) {
+                System.out.print("Invalid column. Choose a free column between 1–7: ");
                 columnNumber = inputReader.nextInt();
             }
         } catch (Exception e) {
-            System.out.println("Invalid input. Choose a column between 1–7: ");
+            System.out.println("Invalid input. Choose a free column between 1–7: ");
             inputReader.next();
             columnNumber = inputReader.nextInt();
         }
 
     }
 
-    public static boolean lowestRowToInsert() {
+    public static void lowestRowToInsert() {
         for (int i = 5; i >= 0; i--) {
             if (gameBoard[i][columnNumber - 1] == '_') {
                 if(player1) gameBoard[i][columnNumber - 1] = 'X';
                 else gameBoard[i][columnNumber - 1] = 'O';
                 printGameBoard();
-                return true;
+                if(i==0) columns[columnNumber-1] = "Full";
+                break;
             }
         }
-        System.out.println("Column full! Try again.");
-        return false;
     }
 
     public static boolean checkForWin() {
