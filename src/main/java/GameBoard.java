@@ -46,6 +46,7 @@ public class GameBoard {
 
     public static boolean checkForWin() {
         // Check horizontal
+
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 4; col++) {
                 char c = gameBoard[row][col];

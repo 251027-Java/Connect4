@@ -6,11 +6,14 @@ public class Connect4 {
         int gameTurns = 42;
         GameBoard.initializeGameBoard();
         GameBoard.printGameBoard();
+        boolean gameOver = false;
 
-        while(gameTurns>=0 && !GameBoard.checkForWin()){
+        while(gameTurns>=0 && !gameOver){
             GameBoard.playGame();
             GameBoard.lowestRowToInsert();
-            if(gameTurns<=39) GameBoard.checkForWin();
+            if(gameTurns<=39) {
+                gameOver = GameBoard.checkForWin();
+            }
             gameTurns--;
 
         }
