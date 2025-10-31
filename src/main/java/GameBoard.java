@@ -53,8 +53,9 @@ public class GameBoard {
                         c == gameBoard[row][col + 1] &&
                         c == gameBoard[row][col + 2] &&
                         c == gameBoard[row][col + 3]) {
-                    System.out.println("🎉 Player " + c + " wins horizontally!");
-                    return true;
+                            System.out.println("Player " + c + " wins horizontally!");
+                            return true;
+
                 }
             }
         }
@@ -67,8 +68,8 @@ public class GameBoard {
                         c == gameBoard[row + 1][col] &&
                         c == gameBoard[row + 2][col] &&
                         c == gameBoard[row + 3][col]) {
-                    System.out.println("🎉 Player " + c + " wins vertically!");
-                    return true;
+                            System.out.println("Player " + c + " wins vertically!");
+                            return true;
                 }
             }
         }
@@ -81,8 +82,8 @@ public class GameBoard {
                         c == gameBoard[row + 1][col + 1] &&
                         c == gameBoard[row + 2][col + 2] &&
                         c == gameBoard[row + 3][col + 3]) {
-                    System.out.println("🎉 Player " + c + " wins diagonally!");
-                    return true;
+                            System.out.println("Player " + c + " wins diagonally!");
+                            return true;
                 }
             }
         }
@@ -95,8 +96,8 @@ public class GameBoard {
                         c == gameBoard[row - 1][col + 1] &&
                         c == gameBoard[row - 2][col + 2] &&
                         c == gameBoard[row - 3][col + 3]) {
-                    System.out.println("🎉 Player " + c + " wins diagonally!");
-                    return true;
+                            System.out.println("Player " + c + " wins diagonally!");
+                            return true;
                 }
             }
         }
